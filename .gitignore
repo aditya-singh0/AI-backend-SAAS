@@ -1,0 +1,39 @@
+# Virtual Environment
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Logs
+logs/
+*.log
+
+# Data files
+data/
+
+# Environment variables
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Setup files
+setup_scraper.sh
+setup.sh
+setup_github.sh
+
+# Credentials
+credentials/
+*.json
