@@ -10,3 +10,4 @@ numpy>=1.21.0
 lxml>=4.9.0
 httpx>=0.24.0
 reportlab>=4.0.0
+selenium
