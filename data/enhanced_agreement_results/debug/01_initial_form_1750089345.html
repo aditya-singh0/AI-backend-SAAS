@@ -1,0 +1,857 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="eSaearch v2.1 for IGR department">
+    <meta name="keywords" content="eDispaly, Elastic Search, Free search, Fast search for IGR documents, Registred Document Search,
+    Paid search new version, IGR search, paid search, Document search for Maharashtra, Document search for IGR,IGR search, Free search">
+    <meta name="author" content="Government of Maharashtra, Department of Registration and Stamps, Inspector of Genaral Registration">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Electronic Document Information Search Portal (E-DISPlay ver 2.1)</title>
+    <link rel="icon" type="image/x-icon" href="/eDisplay/img/igr.png">
+    
+	<link rel="stylesheet" href="/eDisplay/css/../css/normalize.min.css">
+	<link rel="stylesheet" href="/eDisplay/css/../css/cake.css">
+	<link rel="stylesheet" href="/eDisplay/css/../css/dev_css.css">
+	<link rel="stylesheet" href="/eDisplay/css/../css/custom.css">
+<link rel="stylesheet" href="/eDisplay/css/../css/bootstraps/bootstrap/dist/css/bootstrap.min.css"><link rel="stylesheet" href="/eDisplay/css/../css/bootstraps/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/eDisplay/css/../css/datatables.min.css"><script src="/eDisplay/js/../js/comman.js"></script><script src="/eDisplay/js/../js/jquery.min.js"></script><script src="/eDisplay/js/../js/jquery.js"></script><script src="/eDisplay/js/../js/bootstrap.min.js"></script><script src="/eDisplay/js/../js/jquery.datatables.min.js"></script><script src="/eDisplay/js/../js/dataTables.min.js"></script>
+	<script src="/eDisplay/js/../js/commonfun.js"></script>
+
+	<script src="/eDisplay/js/../js/jquery.highlight.js"></script>
+
+	<script src="/eDisplay/js/../js/searchHighlight.min.js"></script>
+    <script type="text/javascript">
+        window.onscroll = function() {
+            scrollFunction()
+        };
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+/* $(function() {
+    let devtoolsOpen = false;
+    const threshold = 160;
+
+    setInterval(function() {
+        const widthDiff = window.outerWidth - window.innerWidth;
+        const heightDiff = window.outerHeight - window.innerHeight;
+
+        if (widthDiff > threshold || heightDiff > threshold) {
+            if (!devtoolsOpen) {
+                devtoolsOpen = true;
+                window.location.href = window.location.href;
+                alert("Developer tools are open! Please close them first.");
+            }
+        } else {
+            devtoolsOpen = false;
+        }
+    }, 1000);
+}); */
+</script>
+    <style>
+        .form-control,.btn {font-size: 14px !important;}
+        ul li { list-style: none;}
+        #subheader {justify-content: end;}
+        #lang ul li:not(:last-child)::after {content: '|';margin: 0 4px;}
+        #lang ul li,#social ul li,#main_menu ul li {display: inline-block;}
+        #lang ul li a,#social ul li a,#main_menu ul li a {font-weight: 600;padding: 0 4px;}
+        #social ul li a .fa-facebook-f {color: #1877f2;font-size: 16px;margin-right: 5px;}
+        #social ul li a .fa-twitter {color: #1da1f2;font-size: 16px;margin-right: 5px;}
+        #social ul li a .fa-youtube {color: #fe0000;font-size: 16px;margin-right: 5px;}
+        header {background: #fff;box-shadow: 0 0 15px 0 #e1e1e1;}
+        header .logo img {width: 65px;margin-right: 10px;}
+        header .other_logo img {width: auto;margin-left: 20px;height: 40px;}
+        header .logo_area .brand_name {margin-left: 10px;}
+        header .logo_area .brand_name span {display: block;font-weight: bold;font-size: 16px;}
+        header .logo_area .sec_logo img {width: 80px;}
+        header .subheader_div {background: #eaeff5;}
+        .fw-bold {font-weight: 700!important;}
+        .mt-auto {margin-top: auto!important;}
+        @media(max-width:991px) {
+            header .logo_area .brand_name span {font-size: 14px}
+            header .logo img {width: 40px}
+        }
+
+        @media(max-width:768px) {
+            header .logo_area .brand_name span {font-size: 12px}
+            header .logo_area .brand_name {text-align: left !important}
+            .service_name h3 {margin-top: 20px !important}
+            #lang ul li span {font-size: 12px !important}
+            #social ul li a .fa-brand {font-size: 14px !important}
+        }
+        .d-flex {display: flex !important;}
+        .my-auto {margin-top: auto !important;margin-bottom: auto !important;}
+        .justify-content-center {justify-content: center !important;}
+        .d-none {display: none !important;}
+        @media(min-width:768px) {
+            .justify-content-md-start {justify-content: flex-start !important}
+            .d-md-block {display: block !important}
+            .justify-content-md-end {justify-content: flex-end !important}
+            .order-md-2 {order: 2 !important}
+            .order-md-1 {order: 1 !important}
+            .d-md-none {display: none !important}
+        }
+        @media(min-width:992px) {
+            .order-lg-1 {order: 1 !important}
+            .order-lg-2 {order: 2 !important;}
+            .order-lg-3 {order: 3 !important}
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="main-bg">
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        <header id="top" class="reqpadding">
+            <div class="container-xxl" style="padding: 10px;">
+                <div class="row d-flex">
+                    <div class="col-lg-5 col-md-6 my-auto order-lg-1">
+                        <div class="logo_area d-flex justify-content-center justify-content-md-start">
+                            <div class="logo my-auto">
+                                <a href="#"><img src="/eDisplay/img/gom.png" alt="Marashtra Gov"></a>
+                                <a href="#"><img src="/eDisplay/img/igr.png" alt="IGR"></a>
+                            </div>
+                            <div class="brand_name text-center my-auto">
+                                <span>Department of Registration and Stamps</span>
+                                <span>Government of Maharashtra</span>
+                                <span>नोंदणी व मुद्रांक विभाग, महाराष्ट्र शासन</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 my-auto order-lg-3 d-none d-md-block">
+                        <div class="logo_area d-flex justify-content-md-end justify-content-center">
+                            <div class="sec_logo order-md-2">
+                                <!-- <span> National Generic Document Registration System</span>
+                                <span> Department of Land Resources </span>
+                                <span> Government of India</span> -->
+                                <a href="https://igrmaharashtra.gov.in/" target="_blank" rel="noopener noreferrer">
+                                    <img src="/eDisplay/img/isarita_logo.png" alt="iSarita Logo" style="width: 180px;">                                </a>
+                            </div>
+                            <div class="sec_logo order-md-2">
+                                <a href="https://india.gov.in/" target="_blank" rel="noopener">
+                                    <img src="/eDisplay/img/india.png" alt="india Gov">                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 mt-auto order-lg-2 service_name">
+                        <h2 class="text-center fw-bold" style="color:#941210">E-DISPlay v2.1</h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="content-wrapper reqmargin pt-3 pb-5">
+                        <section class="content-header text-center">
+                <img src="/eDisplay/img/eshodh.png" display="block" height="60px" alt="Electronic Document Information Search Portal (E-DISPlay ver 2.1)" style="margin-top: 10px">                <span style="margin-top: 1%;font-size:x-large;">Electronic Document Information Search Portal </span>
+                <span class="pull-right" style="font-size: xxx-large;">βeta</span>
+                
+                    <marquee style="background-color: #0b3a82;color:#fff;padding: 5px 0px; border-top-left-radius: 7px; border-top-right-radius: 7px;" onmouseover="this.stop();" onmouseout="this.start();">
+                        Dear user, welcome to eSearch βeta, an advanced version of document search. This module is in the initial phase and deployed for user feedback. We request you to use the application and share your valuable feedback/suggestions on <a href="mailto: feedback[at]igrmaharashtra[dot]gov[dot]in" target="_blank" style="text-decoration:underline; color:white" rel="noopener">feedback[at]igrmaharashtra[dot]gov[dot]in</a> Thank you.
+                    </marquee>
+                    <div class="pull-right" style="color: red;padding: 10px;font: large bold;">
+                    #Data fetched till 15-06-2025.
+                </div>
+            </section>
+            <main class="main main_area p-3">
+                <div class="container-fluid" style="min-height: 450px;">
+                                        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script>
+    $(document).ready(function() {
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+        document.getElementById("dist_name").value = '';
+        document.getElementById("tal_name").value = '';
+        document.getElementById("article_name").value = '';
+        document.getElementById("village_name").value = '';
+        document.getElementById("partyname").value = '';
+        document.getElementById("free_text").value = '';
+        $('#district_id').prop('selectedIndex', 0);
+
+        $('#district_id').change(function() {
+            var table = $('#tableparty').DataTable();
+            table.clear().draw();
+            var yearselect = $("#dbselect option:selected").val();
+            var district = $("#district_id option:selected").val();
+            var dist_name = $("#district_id :selected").text();
+            document.getElementById("dist_name").value = dist_name;
+            if (yearselect == 1) {
+                $.getJSON("/eDisplay/Propertydetails/getTalukaName1985", {
+                        district: district
+                    },
+                    function(data) {
+                        var sc = '<option value="">--Select Taluka--</option>';
+                        $.each(data, function(index, val) {
+                            sc += "<option value=" + val.taluka_code + ">" + val.mtaluka_name + "</option>";
+                        });
+                        $("#taluka_id").prop("disabled", false);
+                        $("#taluka_id option").remove();
+                        $("#taluka_id").append(sc);
+                    });
+            } else if (yearselect == 2) {
+                $.getJSON("/eDisplay/Propertydetails/getTalukaNamehis", {
+                        district: district
+                    },
+                    function(data) {
+                        var sc = '<option value="">--Select Taluka--</option>';
+                        $.each(data, function(index, val) {
+                            sc += "<option value=" + val.taluka_code + ">" + val.mtaluka_name + "</option>";
+                        });
+                        $("#taluka_id").prop("disabled", false);
+                        $("#taluka_id option").remove();
+                        $("#taluka_id").append(sc);
+                    });
+            } else {
+                $.getJSON("/eDisplay/Propertydetails/getTalukaName2019", {
+                        district: district
+                    },
+                    function(data) {
+                        var sc = '<option value="">--Select Taluka--</option>';
+                        $.each(data, function(index, val) {
+                            sc += "<option value=" + val.taluka_code + ">" + val.mtaluka_name + "</option>";
+                        });
+                        $("#taluka_id").prop("disabled", false);
+                        $("#taluka_id option").remove();
+                        $("#taluka_id").append(sc);
+                    });
+            }
+        });
+        $("#dbselect").change(function() {
+            var table = $('#tableparty').DataTable();
+            table.clear().draw();
+            var year = $("#dbselect option:selected").text();
+            var yearselect = $("#dbselect option:selected").val();
+            document.getElementById("yearsel").value = year;
+            $("#district_id option").remove();
+            $("#taluka_id option").remove();
+            $("#village_id option").remove();
+            if (yearselect == 1) {
+                $.district1985();
+            } else if (yearselect == 2) {
+                $.district2013();
+            } else {
+                $.district2019();
+            }
+        });
+        $.district1985 = function() {
+            $.getJSON("/eDisplay/Propertydetails/getDistrictName1985", {},
+                function(data) {
+                    var sc = '<option value="">--select--</option>';
+                    $.each(data, function(index, val) {
+                        sc += "<option value=" + val.dist_code + ">" + val.mdist_name + "</option>";
+                    });
+                    $("#district_id").prop("disabled", false);
+                    $("#district_id option").remove();
+                    $("#district_id").append(sc);
+                });
+        }
+        $.district2013 = function() {
+            $.getJSON("/eDisplay/Propertydetails/getDistrictNamehis", {},
+                function(data) {
+                    var sc = '<option value="">--select--</option>';
+                    $.each(data, function(index, val) {
+                        sc += "<option value=" + val.dist_code + ">" + val.mdist_name + "</option>";
+                    });
+                    $("#district_id").prop("disabled", false);
+                    $("#district_id option").remove();
+                    $("#district_id").append(sc);
+                });
+        }
+        $.district2019 = function() {
+            $.getJSON("/eDisplay/Propertydetails/getDistrictName2019", {},
+                function(data) {
+                    var sc = '<option value="">--select--</option>';
+                    $.each(data, function(index, val) {
+                        sc += "<option value=" + val.dist_code + ">" + val.mdist_name + "</option>";
+                    });
+                    $("#district_id").prop("disabled", false);
+                    $("#district_id option").remove();
+                    $("#district_id").append(sc);
+                });
+        }
+        $('#taluka_id').change(function() {
+            var table = $('#tableparty').DataTable();
+            table.clear().draw();
+            var yearselect = $("#dbselect option:selected").val();
+            var district = $("#district_id option:selected").val();
+            var taluka = $("#taluka_id option:selected").val();
+            var tal_name = $("#taluka_id option:selected").text();
+            document.getElementById("tal_name").value = tal_name;
+            if (yearselect == 1) {
+                $.getJSON("/eDisplay/Propertydetails/getVillageName1985", {
+                        taluka: taluka,
+                        district: district
+                    },
+                    function(data) {
+                        var sc = '<option value="">--Select Village--</option>';
+                        $.each(data, function(index, val) {
+                            sc += "<option value=" + index + ">" + val.am_mareaname + "</option>";
+                        });
+                        $("#village_id").prop("disabled", false);
+                        $("#village_id option").remove();
+                        $("#village_id").append(sc);
+                    });
+            } else if (yearselect == 2) {
+                $.getJSON("/eDisplay/Propertydetails/getVillageNamehis", {
+                        taluka: taluka,
+                        district: district
+                    },
+                    function(data) {
+                        var sc = '<option value="">--Select Village--</option>';
+                        $.each(data, function(index, val) {
+                            sc += "<option value=" + index + ">" + val.am_mareaname + "</option>";
+                        });
+                        $("#village_id").prop("disabled", false);
+                        $("#village_id option").remove();
+                        $("#village_id").append(sc);
+                    });
+            } else {
+                $.getJSON("/eDisplay/Propertydetails/getVillageName2019", {
+                        taluka: taluka,
+                        district: district
+                    },
+                    function(data) {
+                        var sc = '<option value="">--Select Village--</option>';
+                        $.each(data, function(index, val) {
+                            sc += "<option value=" + index + ">" + val.am_mareaname + "</option>";
+                        });
+                        $("#village_id").prop("disabled", false);
+                        $("#village_id option").remove();
+                        $("#village_id").append(sc);
+                    });
+            }
+        });
+        $('#village_id').change(function() {
+            var table = $('#tableparty').DataTable();
+            table.clear().draw();
+            var village_name = $("#village_id :selected").text();
+            document.getElementById("village_name").value = village_name;
+        });
+        $('#article_id').change(function() {
+            var table = $('#tableparty').DataTable();
+            table.clear().draw();
+            var article_name = $("#article_id :selected").text();
+            document.getElementById("article_name").value = article_name;
+        });
+        var freetext = document.getElementById("freetexth").value;
+        $('#tableparty').DataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            paging: true,
+            searching: true,
+            search: {
+                search: freetext
+            }
+        });
+        var table = $('#tableparty').DataTable();
+        table.on('draw', function() {
+            var body = $(table.table().body());
+            body.unhighlight();
+            if (table.rows({
+                    filter: 'applied'
+                }).data().length) {
+                body.highlight(table.search());
+            }
+            body.highlight(table.search());
+        });
+    });
+</script>
+<div class="box-header with-border" style="color: #8B0000">
+    <form method="post" accept-charset="utf-8" id="propertydetails" action="/eDisplay/Propertydetails/index"><div style="display:none;"><input type="hidden" name="_csrfToken" autocomplete="off" value="FCt5+SW0CvfMpiNb1PQEN5SkL2fCujy9voY5Jy3XLrS/n5VllFOAPwB1OqkFja9J7H4BHVZjYHAE3iBViQvEDOHzZ2rUV7FCpMAdBfKCDIyG4gEQG+AbhYasogGma+YPN0NezzO9zCvVSzcqMFMBQA=="></div>    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">Select Year<span style="color: #ff0000">*</span></label>
+                    <select name="years" id="dbselect" class="effect-16 " required="required">
+                        <option value="">--Select Year--</option>
+                                                    <option value="3">2025</option>
+                                                    <option value="3">2024</option>
+                                                    <option value="3">2023</option>
+                                                    <option value="3">2022</option>
+                                                    <option value="3">2021</option>
+                                                    <option value="3">2020</option>
+                                                    <option value="3">2019</option>
+                                                    <option value="2">2018</option>
+                                                    <option value="2">2017</option>
+                                                    <option value="2">2016</option>
+                                                    <option value="2">2015</option>
+                                                    <option value="2">2014</option>
+                                                    <option value="2">2013</option>
+                                                    <option value="2">2012</option>
+                                                    <option value="1">2002</option>
+                                                    <option value="1">2001</option>
+                                                    <option value="1">2000</option>
+                                                    <option value="1">1999</option>
+                                                    <option value="1">1998</option>
+                                                    <option value="1">1997</option>
+                                                    <option value="1">1996</option>
+                                                    <option value="1">1995</option>
+                                                    <option value="1">1994</option>
+                                                    <option value="1">1993</option>
+                                                    <option value="1">1992</option>
+                                                    <option value="1">1991</option>
+                                                    <option value="1">1990</option>
+                                                    <option value="1">1989</option>
+                                                    <option value="1">1988</option>
+                                                    <option value="1">1987</option>
+                                                    <option value="1">1986</option>
+                                                    <option value="1">1985</option>
+                                            </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <!-- <div class='col-lg-12' style="padding: 10px 30px;"> -->
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">District<span style="color: #ff0000">*</span></label>
+                    <select name="district_id" id="district_id" class="effect-16" required="required">
+                        <option value="">--Select District--</option>
+                                                    <option value="8">अकोला</option>
+                                                    <option value="1">अमरावती</option>
+                                                    <option value="14">अहमदनगर</option>
+                                                    <option value="21">उस्मानाबाद </option>
+                                                    <option value="30">औरंगाबाद</option>
+                                                    <option value="25">कोल्हापूर</option>
+                                                    <option value="4">गडचिरोली</option>
+                                                    <option value="36">गोंदिया</option>
+                                                    <option value="3">चंद्रपूर</option>
+                                                    <option value="17">जळगाव</option>
+                                                    <option value="32">जालना</option>
+                                                    <option value="26">ठाणे</option>
+                                                    <option value="15">धुळे</option>
+                                                    <option value="18">नंदुरबार</option>
+                                                    <option value="2">नागपूर</option>
+                                                    <option value="20">नांदेड</option>
+                                                    <option value="13">नाशिक</option>
+                                                    <option value="33">परभणी</option>
+                                                    <option value="38">पालघर</option>
+                                                    <option value="23">पुणे</option>
+                                                    <option value="19">बीड</option>
+                                                    <option value="9">बुलढाणा</option>
+                                                    <option value="5">भंडारा</option>
+                                                    <option value="31">मुंबई</option>
+                                                    <option value="37">मुंबई उपनगर</option>
+                                                    <option value="10">यवतमाळ</option>
+                                                    <option value="28">रत्नागिरी</option>
+                                                    <option value="27">रायगड </option>
+                                                    <option value="22">लातूर </option>
+                                                    <option value="16">वर्धा</option>
+                                                    <option value="35">वाशीम</option>
+                                                    <option value="11">सांगली</option>
+                                                    <option value="24">सातारा</option>
+                                                    <option value="29">सिंधुदुर्ग </option>
+                                                    <option value="12">सोलापूर</option>
+                                                    <option value="34">हिंगोली</option>
+                                            </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">Taluka<span style="color: #ff0000">*</span></label>
+                    <select name="taluka_id" id="taluka_id" class="effect-16" required="required">
+                        <option value="">--Select Taluka--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">Village<span style="color: #ff0000">*</span></label>
+                    <select name="village_id" id="village_id" class="effect-16" required="required">
+                        <option value="">--select Village--</option>
+                    </select>
+                </div>
+            </div>
+            <!-- </div> -->
+
+            <!-- <div class='col-lg-12' style="padding: 10px 30px;"> -->
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">Article Name</label>
+                    <select name="article_id" id="article_id" class="effect-16">
+                        <option value="">--Select Article--</option>
+                                                    <option value="12">1-अभिस्वीकृती/भरणा पावती</option>
+                                                    <option value="13">2-प्रशासन बंधपत्र</option>
+                                                    <option value="28">दत्तकपत्र</option>
+                                                    <option value="29">अँडॉप्शन डीड</option>
+                                                    <option value="30">अँथॉरिटी टू अँडॉप्ट</option>
+                                                    <option value="31">दत्तकाचे प्रधिकारपत्र</option>
+                                                    <option value="37">डिक्लरेशन</option>
+                                                    <option value="38">कन्फर्मेशन डीड</option>
+                                                    <option value="39">मान्य़तापत्र</option>
+                                                    <option value="40">संमतीपत्र</option>
+                                                    <option value="41">कन्सेंट डीड</option>
+                                                    <option value="33">शपथलेख</option>
+                                                    <option value="32">अँफिडेव्हीट</option>
+                                                    <option value="34">प्रतिज्ञापत्र</option>
+                                                    <option value="35">शपथपत्र</option>
+                                                    <option value="36">घोषणापत्र</option>
+                                                    <option value="42">विकसनकरारनामा</option>
+                                                    <option value="43">डेव्हलपमेंट अँग्रीमेंट </option>
+                                                    <option value="45">असाईनमेंट ऑफ डेव्हलपमेंट राईट्स</option>
+                                                    <option value="47">अँग्रीमेंट ऑफ ट्रान्स्फर ऑफ टेनन्सी </option>
+                                                    <option value="44">विकसन हक्काचे तबदीलपत्र</option>
+                                                    <option value="46">जॉईट व्हेंचर</option>
+                                                    <option value="48">कुळहक्काचे हस्तांतरणाचे करारनामा</option>
+                                                    <option value="49">हायर परचेस करारनामा</option>
+                                                    <option value="50">हक्कलेखनिक्षेप दस्त</option>
+                                                    <option value="51">डिपॉझिट ऑफ टायटल डीड </option>
+                                                    <option value="52">हडपतारण </option>
+                                                    <option value="53">हायपोथिकेशन </option>
+                                                    <option value="54">इक्विटेबल मॉरगेजडीड</option>
+                                                    <option value="14">7-मुखत्यारीची अंमलबजावणी म्हणून नेमणूक</option>
+                                                    <option value="15">8-मूल्यन किंवा मूल्यांकन</option>
+                                                    <option value="16">9-शिकाऊ उमेदवारी विलेख</option>
+                                                    <option value="17">10-एखाद्या कंपनीची संस्थापन नियमावली</option>
+                                                    <option value="18">11-व्यवसाय उमेदवारी करार</option>
+                                                    <option value="67">अँवॉर्ड</option>
+                                                    <option value="68">सनद</option>
+                                                    <option value="55">बंधपत्र</option>
+                                                    <option value="56">बॉन्ड</option>
+                                                    <option value="57">हमीपत्र</option>
+                                                    <option value="19">14-नौतारण बंधपत्र</option>
+                                                    <option value="58">रद्दलेख </option>
+                                                    <option value="59">कॅन्सलेशन डीड</option>
+                                                    <option value="61">सेल सर्टिफिकेट</option>
+                                                    <option value="60">सर्टिफिकेट ऑफ सेल </option>
+                                                    <option value="62">विक्री दाखला </option>
+                                                    <option value="63">विक्री प्रमाणपत्र</option>
+                                                    <option value="64">प्रमाणपत्र</option>
+                                                    <option value="65">दाखला</option>
+                                                    <option value="20">18-नौभाटक लेख</option>
+                                                    <option value="21">19-निपटारा यादी</option>
+                                                    <option value="22">20-निपटारा यादी (कापूस...)</option>
+                                                    <option value="23">21-निपटारा यादी  सोन्याचांदीच्या लगडी व</option>
+                                                    <option value="24">22-निपटारा यादी  गळित धान्यांच्या खरेदीचे</option>
+                                                    <option value="25">23-निपटारा यादी ( कोणत्याही प्रकारचे सूत )</option>
+                                                    <option value="26">24-तडजोडनामा</option>
+                                                    <option value="66">24-तडजोडनामा</option>
+                                                    <option value="4">फरोक्तखरेदीखत</option>
+                                                    <option value="15">असाईनमेंट डीड</option>
+                                                    <option value="3">खुषखरेदीखत</option>
+                                                    <option value="5">विक्रीपत्र</option>
+                                                    <option value="11">ट्रान्सफर डीड</option>
+                                                    <option value="12">हस्तांतरणपत्र</option>
+                                                    <option value="13">तबदीलपत्र</option>
+                                                    <option value="26">बैचेनपत्र</option>
+                                                    <option value="27">कायम खुषखरेदीखत
+</option>
+                                                    <option value="14">तबदीलीचा करारनामा</option>
+                                                    <option value="16">अँग्रीमेंट टू असाईनमेंट </option>
+                                                    <option value="20">इकरारनामा</option>
+                                                    <option value="21">इसार पावती</option>
+                                                    <option value="22">ताबापावती</option>
+                                                    <option value="23">करारनामा</option>
+                                                    <option value="25">ताब्याचे साठेखत</option>
+                                                    <option value="155">पर्यायी जागेचा करार</option>
+                                                    <option value="2">खरेदीखत</option>
+                                                    <option value="17">डीड ऑफ अपार्टमेंट </option>
+                                                    <option value="18">अपार्टमेंट डीड</option>
+                                                    <option value="6">विक्री करारनामा</option>
+                                                    <option value="24">बिन ताब्याचे साठेखत</option>
+                                                    <option value="158">असाईनमेंट+B45 डीड</option>
+                                                    <option value="160">अँग्रीमेंट टू सेल ऑफ ऑफिस</option>
+                                                    <option value="161">अँग्रीमेंट टू सेल ऑफ शॉप</option>
+                                                    <option value="9">सेल डीड</option>
+                                                    <option value="10">कन्व्हेन्स डीड</option>
+                                                    <option value="162">अविभाज्य हिश्याची पूर्ण विक्री</option>
+                                                    <option value="163">अविभाज्य हिश्याची अंशतः विक्री</option>
+                                                    <option value="159">अँग्रीमेंट टू सेल ऑफ फ्लॅट</option>
+                                                    <option value="1">अभिहस्तांतरणपत्र</option>
+                                                    <option value="7">साठेखत</option>
+                                                    <option value="19">बयनामा</option>
+                                                    <option value="150">सप्लीमेंट्री अँग्रीमेंट</option>
+                                                    <option value="149">पुरवणी करारनामा</option>
+                                                    <option value="8">अँग्रीमेंट टू सेल </option>
+                                                    <option value="69">प्रत</option>
+                                                    <option value="70">कॉपी</option>
+                                                    <option value="71">डुप्लीकेट</option>
+                                                    <option value="72">दुबार प्रत </option>
+                                                    <option value="27">28-सीमाशुल्क बंधपत्र किंवा उतपादन शुल्क बंधपत्र</option>
+                                                    <option value="28">29-मालाच्या बाबतीत सुपूर्दगी आदेश</option>
+                                                    <option value="74">फारकत</option>
+                                                    <option value="75">काडीमोड</option>
+                                                    <option value="77">सोडचिठ्ठी</option>
+                                                    <option value="78">डायव्होर्स</option>
+                                                    <option value="76">विवाह विच्छेदन</option>
+                                                    <option value="73">घटस्फोट</option>
+                                                    <option value="29">31-विवाह ज्ञापन नोंद</option>
+                                                    <option value="79">डीड ऑफ एक्सेंज</option>
+                                                    <option value="81">विनिमय</option>
+                                                    <option value="80">अदलाबदल पत्र</option>
+                                                    <option value="82">फर्दर चार्ज </option>
+                                                    <option value="83">जादा बोजाचे गहाणखत</option>
+                                                    <option value="84">बक्षीसपत्र</option>
+                                                    <option value="86">दानपत्र</option>
+                                                    <option value="87">हिबानामा</option>
+                                                    <option value="165">अविभाज्य हिश्याचे अंशतः बक्षिसपत्र</option>
+                                                    <option value="164">अविभाज्य हिश्याचे पूर्ण बक्षिसपत्र</option>
+                                                    <option value="85">गिफ्ट</option>
+                                                    <option value="32">35-क्षतिपूर्ती बंधपत्र</option>
+                                                    <option value="88">भाडेपट्टा</option>
+                                                    <option value="89">लीजडीड</option>
+                                                    <option value="94">लिव्ह अँणड लायसन्स </option>
+                                                    <option value="92">भाडेकरार</option>
+                                                    <option value="90">पट्टा</option>
+                                                    <option value="93">किरायानामा</option>
+                                                    <option value="91">अँग्रीमेंट टू लीज</option>
+                                                    <option value="33">37-शेअर वाटपपत्र</option>
+                                                    <option value="34">38-लायसनपत्र</option>
+                                                    <option value="35">39-कंपनीचा संस्थापन समयलेख</option>
+                                                    <option value="97">डीड ऑफ मॉरगेज</option>
+                                                    <option value="95">गहाणखत</option>
+                                                    <option value="96">मॉरगेज डीड</option>
+                                                    <option value="119">मुदत खरेदीखत </option>
+                                                    <option value="120">शर्तीचे खरेदीखत </option>
+                                                    <option value="98">नजर गहाणखत</option>
+                                                    <option value="99">ताबा गहाणखत</option>
+                                                    <option value="100">मॉरगेज विथ पझेशन</option>
+                                                    <option value="101">पिक गहाणखत</option>
+                                                    <option value="102">पिक तारण</option>
+                                                    <option value="1">42-लेखप्रमाणकाचा लेख</option>
+                                                    <option value="2">43-टिप्पणी किंवा ज्ञापन</option>
+                                                    <option value="3">44-नौकाधिपतीच्या अधिकथनाविषयी अधिटिप्पणी</option>
+                                                    <option value="4">45-पैसे देण्याचा आदेश</option>
+                                                    <option value="104">पार्टीशन</option>
+                                                    <option value="103">वाटप पत्र</option>
+                                                    <option value="106">भागीदारीपत्र</option>
+                                                    <option value="107">भागीदारापत्राचे विघटन</option>
+                                                    <option value="108">डिझोल्युशन ऑफ पार्टनरशिप </option>
+                                                    <option value="105">पार्टनरशिप डीड</option>
+                                                    <option value="113">जनरल पॉवर ऑफ अँटर्नी</option>
+                                                    <option value="114">स्पेशल पॉवर ऑफ अँटर्नी</option>
+                                                    <option value="117">इर्रिकोव्हेबल पॉवर ऑफ अँटर्नी</option>
+                                                    <option value="109">कुलमुखत्यारपत्र</option>
+                                                    <option value="111">आममुखत्यारनामा</option>
+                                                    <option value="116">कधीही रद्द न होणारे  कुलमुखत्यारपत्र </option>
+                                                    <option value="115">विशेष मुखत्यारनामा</option>
+                                                    <option value="110">पॉवर ऑफ अँटर्नी</option>
+                                                    <option value="112">अधिकारपत्र</option>
+                                                    <option value="5">49-विनिमयपत्र किंवा वचनचिठ्ठी</option>
+                                                    <option value="6">50-नौकाधिपतीचे अधिकथन</option>
+                                                    <option value="121">उलट खरेदीखत </option>
+                                                    <option value="133">कुटुंब व्यवस्थापत्र</option>
+                                                    <option value="148">इंडेम्निटी बॉड</option>
+                                                    <option value="151">डीड ऑफ पोल</option>
+                                                    <option value="152">पावती</option>
+                                                    <option value="153">रिसीट</option>
+                                                    <option value="154">कोडीसील</option>
+                                                    <option value="118">रिकन्व्हेन्स</option>
+                                                    <option value="122">रिलीज डीड</option>
+                                                    <option value="124">हक्कसोडपत्र</option>
+                                                    <option value="123">बेदावापत्र</option>
+                                                    <option value="7">53-नौभार बंधपत्र</option>
+                                                    <option value="125">प्रतिभूती बंधपत्र</option>
+                                                    <option value="127">जामीन कदबा</option>
+                                                    <option value="128">जामीनपत्र</option>
+                                                    <option value="126">सिक्युरिटी बॉण्ड</option>
+                                                    <option value="129">सेटलमेंट</option>
+                                                    <option value="130">व्यवस्थापत्र</option>
+                                                    <option value="131">अँरेजमेंट</option>
+                                                    <option value="132">फॅमिली अँरेजमेंट</option>
+                                                    <option value="8">56-शेअर अधिपत्रे</option>
+                                                    <option value="9">57-नौवहनआदेश</option>
+                                                    <option value="139">सरंडर ऑफ लीज</option>
+                                                    <option value="140">भाडेपट्ट्याचे प्रत्यार्पण</option>
+                                                    <option value="10">59-हस्तांतरण</option>
+                                                    <option value="141">भाडेपट्ट्याचे हस्तांतरणपत्र</option>
+                                                    <option value="142">भाडेकरू हक्काचे तबदीलपत्र</option>
+                                                    <option value="143">ट्रान्सफर ऑफ लीज</option>
+                                                    <option value="144">असाईनमेंट ऑफ लीज</option>
+                                                    <option value="145">ट्रस्ट</option>
+                                                    <option value="146">विश्र्वस्तलेख</option>
+                                                    <option value="11">62-मालाचे अधिपत्र</option>
+                                                    <option value="135">विल</option>
+                                                    <option value="134">मृत्यूपत्र</option>
+                                                    <option value="136">बसियतनामा</option>
+                                                    <option value="137">मृत्यूपत्राचा रद्दलेख</option>
+                                                    <option value="138">कॅन्सलेशन ऑफ विल</option>
+                                                    <option value="30">65-चुक दुरुस्ती पत्र</option>
+                                                    <option value="31">66-नोटीस ऑफ़ लिस पेंडंसी</option>
+                                                    <option value="157">36-अ-लिव्ह अॅड लायसन्सेस</option>
+                                                    <option value="157">36-अ-Leave and Licenses</option>
+                                                    <option value="147">वर्क कॉन्ट्रॅक्ट</option>
+                                                    <option value="36">कार्यकंत्राट</option>
+                                            </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">Enter Doc/Property/CTS/Survey no/Reg. Year.<span style="color: #ff0000">*</span></label>
+                    <input type="text" name="free_text" id="free_text" class="effect-16" maxlength="20" minlength="4" required="required" onkeyup="this.value=this.value.replace(/[^0-9 //-]/g,&quot;&quot;);" autocomplete="off" title="Only 0-9,Sapce,/ &amp; - allowed." value="">                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">Name of Seller/buyer/Owner/Tenant (Optional)</label><!-- Mortgagee/Mortgagor  -->
+                    <input type="text" name="partyname" id="partyname" class="effect-16" placeholder="Party Name" maxlength="20" minlength="5" autocomplete="off" value="">                    <a href="https://www.google.com/intl/mr/inputtools/try/" target="_blank" style="color: red;" rel="noopener">Click Here For Marathi Typing (Phonetic).</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="input-effect">
+                    <label for="" class="select2_label">Enter Captcha</label>
+                    <input type="text" name="captcha" id="cpatchaTextBox" class="effect-16" maxlength="6" minlength="6" required="required" autocomplete="off" value="">                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 my-auto d-flex" style="display: flex; align-items: center; gap: 10px;">
+                <img src="/eDisplay/captcha-image" alt="CAPTCHA" id="captcha-img">
+                <img src="/eDisplay/img/ajax-loader.gif" id="captcha-loader" style="display:none; height: 24px;">
+                <button type="button" onclick="refreshCaptcha()" class="btn btn-default ms-2 reloadbutton">
+                    <i class="fa fa-spin fa-refresh"></i>
+                </button>
+            </div>
+            <script>
+                function refreshCaptcha() {
+                    const captchaImg = document.getElementById("captcha-img");
+                    const loader = document.getElementById("captcha-loader");
+                    loader.style.display = "inline";
+                    const newSrc = "/eDisplay/captcha-image?" + Date.now();
+                    const tempImage = new Image();
+                    tempImage.onload = function () {
+                        captchaImg.src = newSrc;
+                        loader.style.display = "none";
+                    };
+                    tempImage.src = newSrc;
+                }
+            </script>
+            <div class="col-md-12 text-center my-4">
+                <button id="reset" type="reset" class="btn secondary me-2"><span class="fa fa-refresh me-2"></span>Reset</button>
+                <button id="submit" class="btn primary" type="Submit"><span class="fa fa-search me-2"></span>Search</button>
+            </div>
+        </div>
+
+    </div>
+    <input type="hidden" name="dist_name" id="dist_name" class="form-control input-sm " value=""><input type="hidden" name="tal_name" id="tal_name" class="form-control input-sm " value=""><input type="hidden" name="article_name" id="article_name" class="form-control input-sm " value=""><input type="hidden" name="village_name" id="village_name" class="form-control input-sm " value=""><input type="hidden" name="freetext" id="freetexth" value=""><input type="hidden" name="yearsel" id="yearsel" value="">
+
+
+
+
+</form></div>
+<div class="edisplay mt-5">
+    <div class="box box-primary">
+        <div class="box-body" id="docrecorddetails">
+            <div class="box-header with-border" style="border-top:3px solid #0b3a82;">
+                <h3 class="box-title headbolder text-center mt-2" style="font-weight: bold;color: #0b3a82;">Record Details</h3>
+            </div>
+
+            <div id="selectdocument" class="table-responsive">
+
+                <div id="tableparty_wrapper" class="dt-container dt-empty-footer"><div class="dt-layout-row"><div class="dt-layout-cell dt-layout-start"><div class="dt-length"><select aria-controls="tableparty" class="dt-input" id="dt-length-0"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="-1">All</option></select><label for="dt-length-0"> entries per page</label></div></div><div class="dt-layout-cell dt-layout-end"><div class="dt-search"><label for="dt-search-0">Search:</label><input type="search" class="dt-input" id="dt-search-0" placeholder="" aria-controls="tableparty"></div></div></div><div class="dt-layout-row dt-layout-table"><div class="dt-layout-cell  dt-layout-full"><table id="tableparty" class="newui dataTable" aria-describedby="tableparty_info" style="width: 100%;"><colgroup><col data-dt-column="0" style="width: 82.1333px;"><col data-dt-column="1" style="width: 85.3px;"><col data-dt-column="2" style="width: 102.1px;"><col data-dt-column="3" style="width: 129.067px;"><col data-dt-column="4" style="width: 79.85px;"><col data-dt-column="5" style="width: 109.533px;"><col data-dt-column="6" style="width: 110.2px;"><col data-dt-column="7" style="width: 110px;"><col data-dt-column="8" style="width: 97.9667px;"></colgroup>
+                    <thead style="background-color: #7bc6de;">
+                                                <tr><th class="center dt-orderable-asc dt-orderable-desc dt-ordering-asc" style="width:2%;vertical-align: middle;" data-dt-column="0" rowspan="1" colspan="1" aria-sort="ascending"><span class="dt-column-title">अनु क्र.</span><span class="dt-column-order" role="button" aria-label="अनु क्र.: Activate to invert sorting" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:4%;vertical-align: middle;" data-dt-column="1" rowspan="1" colspan="1"><span class="dt-column-title">दस्त क्र.</span><span class="dt-column-order" role="button" aria-label="दस्त क्र.: Activate to sort" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:7%;vertical-align: middle;" data-dt-column="2" rowspan="1" colspan="1"><span class="dt-column-title">दस्त प्रकार</span><span class="dt-column-order" role="button" aria-label="दस्त प्रकार: Activate to sort" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:7%;vertical-align: middle;" data-dt-column="3" rowspan="1" colspan="1"><span class="dt-column-title">दू. नि. कार्यालय</span><span class="dt-column-order" role="button" aria-label="दू. नि. कार्यालय: Activate to sort" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:6%;vertical-align: middle;" data-dt-column="4" rowspan="1" colspan="1"><span class="dt-column-title">दिनांक</span><span class="dt-column-order" role="button" aria-label="दिनांक: Activate to sort" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:21%;vertical-align: middle;" data-dt-column="5" rowspan="1" colspan="1"><span class="dt-column-title">लिहून देणार</span><span class="dt-column-order" role="button" aria-label="लिहून देणार: Activate to sort" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:21%;vertical-align: middle;" data-dt-column="6" rowspan="1" colspan="1"><span class="dt-column-title">लिहून घेणार</span><span class="dt-column-order" role="button" aria-label="लिहून घेणार: Activate to sort" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:26%;vertical-align: middle;" data-dt-column="7" rowspan="1" colspan="1"><span class="dt-column-title">इतर माहीती</span><span class="dt-column-order" role="button" aria-label="इतर माहीती: Activate to sort" tabindex="0"></span></th><th class="center dt-orderable-asc dt-orderable-desc" style="width:6%;vertical-align: middle;" data-dt-column="8" rowspan="1" colspan="1"><span class="dt-column-title">सूची क्र. २</span><span class="dt-column-order" role="button" aria-label="सूची क्र. २: Activate to sort" tabindex="0"></span></th></tr>
+                    </thead>
+                    <tbody><tr><td colspan="9" class="dt-empty">No data available in table</td></tr></tbody>
+
+                <tfoot></tfoot></table></div></div><div class="dt-layout-row"><div class="dt-layout-cell dt-layout-start"><div class="dt-info" aria-live="polite" id="tableparty_info" role="status">Showing 0 to 0 of 0 entries</div></div><div class="dt-layout-cell dt-layout-end"><div class="dt-paging"><nav aria-label="pagination"><button class="dt-paging-button disabled first" role="link" type="button" aria-controls="tableparty" aria-disabled="true" aria-label="First" data-dt-idx="first" tabindex="-1">«</button><button class="dt-paging-button disabled previous" role="link" type="button" aria-controls="tableparty" aria-disabled="true" aria-label="Previous" data-dt-idx="previous" tabindex="-1">‹</button><button class="dt-paging-button disabled next" role="link" type="button" aria-controls="tableparty" aria-disabled="true" aria-label="Next" data-dt-idx="next" tabindex="-1">›</button><button class="dt-paging-button disabled last" role="link" type="button" aria-controls="tableparty" aria-disabled="true" aria-label="Last" data-dt-idx="last" tabindex="-1">»</button></nav></div></div></div><div style="width: 100%; height: 0px;" class="dt-autosize"></div></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+                </div>
+            </main>
+           
+        </div>
+        <div class="row footer reqpadding">
+                <div class="col-12 d-md-none">
+                    <div class="logo_area d-flex justify-content-md-end justify-content-center">
+                        <div class="sec_logo order-md-2">
+                            <a href="https://india.gov.in/" target="_blank" rel="noopener">
+                                                            </a>
+                        </div>
+                        <div class="brand_name text-center my-auto order-md-1">
+                            <span class="d-block"> National Generic Document Registration System</span>
+                            <span> Department of Land Resources </span>
+                            <span> Government of India</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footername">
+                    Website Design, Developed &amp; Maintained by Department of Registration &amp; Stamps under<br> the Guidance of NIC © 2023
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footermenu">
+                    <span data-toggle="modal" data-target="#disclaimer">&nbsp; Disclaimer&nbsp; |</span>
+                    <span data-toggle="modal" data-target="#copyright"> &nbsp; Copy Right &nbsp; |</span>
+                    <span data-toggle="modal" data-target="#privacypolicy">&nbsp; Privacy Policy &nbsp;</span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footerinfo">
+                    <span class="pull-left">&nbsp;&nbsp;Today's Visitors : 2430</span>
+                    16 June 2025, 09:26:29pm&nbsp;&nbsp;&nbsp;&nbsp;.18 : 243                    <span class="pull-right">Total Visitors : 5907665&nbsp;&nbsp;</span>
+                </div>
+            </div>
+
+
+    </div>
+
+
+<div class="modal fade" id="disclaimer">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="link_div_heading modal-header">
+                <b class="close pull-right" data-dismiss="modal">X</b>
+                <span>Disclaimer</span>
+            </div>
+            <div class="modal-body">
+                <p>This Website Design, Developed &amp; Maintained by Department of Registration &amp; Stamps under the Guidance of NIC © 2023</p>
+                <p>The contents of this website are for information purposes only, enabling the public at large to have a quick and an easy access to information and do not have any legal sanctity. Though every effort is made to provide accurate and updated information, it is likely that the some details such as telephone numbers, names of the officer holding a post, etc may have changed prior to their updation in the website. Hence, we do not assume any legal liability on the completeness, accuracy or usefulness of the contents provided in this website.</p>
+                <p>The links are provided to other external sites in some web pages/documents. We do not take responsibility for the accuracy of the contents in those sites. The hyperlinks given to external sites do not constitute an endorsement of information, products or services offered by these sites.</p>
+                <p>Despite our best efforts, we do not guarantee that the documents in this site are free from infection by computer viruses etc.</p>
+                <p>We welcome your suggestions to improve this website and request that error(if any) may kindly be brought to our notice.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="copyright">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="link_div_heading modal-header">
+                <b class="close pull-right" data-dismiss="modal">X</b>
+                <span>Copy Right</span>
+            </div>
+            <div class="modal-body">
+                <p>The contents of this website may not be reproduced partially or fully, without due permission from Department of Registration &amp; Stamps, Govt. of Maharashtra. If referred to as a part of another publication, the source must be appropriately acknowledged. The contents of this website can not be used in any misleading or objectionable context.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="privacypolicy">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="link_div_heading modal-header">
+                <b class="close pull-right" data-dismiss="modal">X</b>
+                <span>Privacy Policy</span>
+            </div>
+            <div class="modal-body">
+                <p>As a general rule, this website does not collect Personal Information about you when you visit the site. You can generally visit the site without revealing Personal Information, unless you choose to provide such information.</p>
+                <b>Site Visit data:</b>
+                <p>This website records your visit and logs the following information for statistical purposes your server's address; the name of the top-level domain from which you access the Internet (for example, .gov, .com, .in, etc.); the type of browser you use; the date and time you access the site; the pages you have accessed and the documents downloaded and the previous Internet address from which you linked directly to the site.</p>
+                <p>We will not identify users or their browsing activities, except when a law enforcement agency may exercise a warrant to inspect the service provider's logs.</p>
+                <b>Cookies:</b>
+                <p>A cookie is a piece of software code that an internet web site sends to your browser when you access information at that site. This site does not use cookies.</p>
+                <b>Email management:</b>
+                <p>Your email address will only be recorded if you choose to send a message. It will only be used for the purpose for which you have provided it and will not be added to a mailing list. Your email address will not be used for any other purpose, and will not be disclosed, without your consent.</p>
+                <b>Collection of Personal Information:</b>
+                <p>If you are asked for any other Personal Information you will be informed how it will be used if you choose to give it. If at any time you believe the principles referred to in this privacy statement have not been followed, or have any other comments on these principles, please notify the webmaster through the contact us page.</p>
+                <b>Note:</b>
+                <p>The use of the term "Personal Information" in this privacy statement refers to any information from which your identity is apparent or can be reasonably ascertained.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div></body></html>
